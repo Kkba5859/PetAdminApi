@@ -1,0 +1,60 @@
+[
+  {
+    "ContainingType": "PetAdminApi.Controllers.AdminDashboardController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/Admin/dashboard/deleteUser/{username}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetAdminApi.Controllers.AdminDashboardController",
+    "Method": "GetUsers",
+    "RelativePath": "api/Admin/dashboard/getUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetAdminApi.Controllers.AdminLoginController",
+    "Method": "Login",
+    "RelativePath": "api/Admin/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PetAdminApi.Models.AdminDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetAdminApi.Controllers.AdminRegisterController",
+    "Method": "Register",
+    "RelativePath": "api/Admin/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PetAdminApi.Models.AdminDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
