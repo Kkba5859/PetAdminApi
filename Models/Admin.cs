@@ -1,9 +1,7 @@
 ﻿namespace PetAdminApi.Models
 {
-    public class Admin
+    public class Admin : User
     {
-        public int Id { get; set; }
-        public string? Username { get; set; }
         public string? PasswordHash { get; set; }
     }
 

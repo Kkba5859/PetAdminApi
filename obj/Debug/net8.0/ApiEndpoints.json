@@ -2,7 +2,7 @@
   {
     "ContainingType": "PetAdminApi.Controllers.AdminDashboardController",
     "Method": "DeleteUser",
-    "RelativePath": "api/Admin/dashboard/deleteUser/{username}",
+    "RelativePath": "api/AdminDashboard/deleteUser/{username}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -18,7 +18,7 @@
   {
     "ContainingType": "PetAdminApi.Controllers.AdminDashboardController",
     "Method": "GetUsers",
-    "RelativePath": "api/Admin/dashboard/getUsers",
+    "RelativePath": "api/AdminDashboard/getUsers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -28,7 +28,7 @@
   {
     "ContainingType": "PetAdminApi.Controllers.AdminLoginController",
     "Method": "Login",
-    "RelativePath": "api/Admin/login",
+    "RelativePath": "api/AdminLogin",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -44,7 +44,7 @@
   {
     "ContainingType": "PetAdminApi.Controllers.AdminRegisterController",
     "Method": "Register",
-    "RelativePath": "api/Admin/register",
+    "RelativePath": "api/AdminRegister",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
