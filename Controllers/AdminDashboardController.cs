@@ -9,10 +9,12 @@ namespace PetAdminApi.Controllers
     public class AdminDashboardController : ControllerBase
     {
         private readonly UserDbContext _userContext;
+        private readonly AdminDbContext _adminContext;
 
-        public AdminDashboardController(UserDbContext userContext)
+        public AdminDashboardController(UserDbContext userContext, AdminDbContext adminContext)
         {
             _userContext = userContext;
+            _adminContext = adminContext;
         }
 
         // Метод для удаления пользователя
@@ -34,17 +36,47 @@ namespace PetAdminApi.Controllers
             return Ok(new { message = "Пользователь удален." });
         }
 
+        // Метод для удаления администратора
+        [HttpDelete("deleteAdmin/{username}")]
+        public async Task<IActionResult> DeleteAdmin(string username)
+        {
+            var admin = await _adminContext.Admins
+                .Where(a => a.Username == username)
+                .FirstOrDefaultAsync();
+
+            if (admin == null)
+            {
+                return NotFound(new { message = "Администратор не найден." });
+            }
+
+            _adminContext.Admins.Remove(admin);
+            await _adminContext.SaveChangesAsync();
+
+            return Ok(new { message = "Администратор удален." });
+        }
+
         // Метод для получения списка всех пользователей
         [HttpGet("getUsers")]
         public async Task<IActionResult> GetUsers()
         {
-            // Получаем список пользователей с только нужными полями
             var users = await _userContext.Users
                 .Take(100)
                 .Select(u => new { u.Id, u.Username })
                 .ToListAsync();
 
-            return Ok(users); // Этот результат будет сериализован в JSON
+            return Ok(users);
+        }
+
+        // Метод для получения списка всех администраторов
+        [HttpGet("getAdmins")]
+        public async Task<IActionResult> GetAdmins()
+        {
+            var admins = await _adminContext.Admins
+                .Take(100)
+                .Select(a => new { a.Id, a.Username })
+                .ToListAsync();
+
+            return Ok(admins);
         }
     }
 }
