@@ -12,6 +12,8 @@ namespace PetAdminApi
 
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
             // Добавление сервисов в контейнер
             builder.Services.AddControllers();
 

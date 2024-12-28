@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "PetAdminApi.Controllers.AdminDashboardController",
+    "Method": "DeleteAdmin",
+    "RelativePath": "api/AdminDashboard/deleteAdmin/{username}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetAdminApi.Controllers.AdminDashboardController",
     "Method": "DeleteUser",
     "RelativePath": "api/AdminDashboard/deleteUser/{username}",
     "HttpMethod": "DELETE",
@@ -13,6 +29,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetAdminApi.Controllers.AdminDashboardController",
+    "Method": "GetAdmins",
+    "RelativePath": "api/AdminDashboard/getAdmins",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
