@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetAdminApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10b0eeb947726435eed8cedc708206763813a299")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23aec5b95e4fd3a885fae2e3908139b106f327ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetAdminApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetAdminApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
