@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PetAdminApi.Data;
+using PetAdminApi.Hubs;
 
 namespace PetAdminApi
 {
@@ -13,6 +14,8 @@ namespace PetAdminApi
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+            builder.Services.AddSignalR();
 
             // Добавление сервисов в контейнер
             builder.Services.AddControllers();
@@ -62,6 +65,8 @@ namespace PetAdminApi
             }
 
             app.UseHttpsRedirection();
+
+            app.MapHub<NotificationHub>("/notificationHub");
 
             // Включение аутентификации и авторизации
             app.UseAuthentication();

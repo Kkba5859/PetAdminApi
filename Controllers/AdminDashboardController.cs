@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using PetAdminApi.Data;
+using PetAdminApi.Hubs;
 
 namespace PetAdminApi.Controllers
 {
@@ -10,14 +12,15 @@ namespace PetAdminApi.Controllers
     {
         private readonly UserDbContext _userContext;
         private readonly AdminDbContext _adminContext;
+        private readonly IHubContext<NotificationHub> _hubContext;
 
-        public AdminDashboardController(UserDbContext userContext, AdminDbContext adminContext)
+        public AdminDashboardController(UserDbContext userContext, AdminDbContext adminContext, IHubContext<NotificationHub> hubContext)
         {
             _userContext = userContext;
             _adminContext = adminContext;
+            _hubContext = hubContext;
         }
 
-        // Метод для удаления пользователя
         [HttpDelete("deleteUser/{username}")]
         public async Task<IActionResult> DeleteUser(string username)
         {
@@ -33,10 +36,12 @@ namespace PetAdminApi.Controllers
             _userContext.Users.Remove(user);
             await _userContext.SaveChangesAsync();
 
+            // Отправка уведомления через SignalR
+            await _hubContext.Clients.All.SendAsync("UserDeleted", username);
+
             return Ok(new { message = "Пользователь удален." });
         }
 
-        // Метод для удаления администратора
         [HttpDelete("deleteAdmin/{username}")]
         public async Task<IActionResult> DeleteAdmin(string username)
         {
@@ -52,10 +57,12 @@ namespace PetAdminApi.Controllers
             _adminContext.Admins.Remove(admin);
             await _adminContext.SaveChangesAsync();
 
+            // Отправка уведомления через SignalR
+            await _hubContext.Clients.All.SendAsync("AdminDeleted", username);
+
             return Ok(new { message = "Администратор удален." });
         }
 
-        // Метод для получения списка всех пользователей
         [HttpGet("getUsers")]
         public async Task<IActionResult> GetUsers()
         {
@@ -67,7 +74,6 @@ namespace PetAdminApi.Controllers
             return Ok(users);
         }
 
-        // Метод для получения списка всех администраторов
         [HttpGet("getAdmins")]
         public async Task<IActionResult> GetAdmins()
         {

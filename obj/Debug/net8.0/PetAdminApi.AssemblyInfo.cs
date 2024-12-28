@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetAdminApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48682be312164224765e86f5bdab872e53137240")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07b94983de81d4dd5979f82af8e62d1a94df1437")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetAdminApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetAdminApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
