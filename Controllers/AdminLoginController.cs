@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using PetAdminApi.Data;
 using PetAdminApi.Models;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using System.Linq;
 
 namespace PetAdminApi.Controllers
 {
-    [Route("api/Admin/login")]
+    [Route("api/AdminLogin")]
     [ApiController]
     public class AdminLoginController : ControllerBase
     {
@@ -32,25 +29,8 @@ namespace PetAdminApi.Controllers
                 return Unauthorized("Неверные учетные данные.");
             }
 
-            // Создание JWT токена
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Name, admin.Username),
-                new Claim(ClaimTypes.Role, "Admin")
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
-                claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(30),
-                signingCredentials: creds
-            );
-
-            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+            // Успешный вход
+            return Ok(new { message = "Login successful" });
         }
     }
 }

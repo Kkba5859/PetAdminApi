@@ -6,7 +6,7 @@ using PetAdminApi.Models;
 
 namespace PetAdminApi.Controllers
 {
-    [Route("api/Admin/register")]
+    [Route("api/AdminRegister")]
     [ApiController]
     public class AdminRegisterController : ControllerBase
     {
@@ -19,8 +19,19 @@ namespace PetAdminApi.Controllers
 
         // Метод регистрации администратора
         [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Register([FromBody] AdminDto request)
         {
+            if (request == null)
+            {
+                return BadRequest("Данные не были отправлены.");
+            }
+
+            if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
+            {
+                return BadRequest("Имя пользователя или пароль не могут быть пустыми.");
+            }
+
             // Проверка существования администратора
             var existingAdmin = await _adminContext.Admins
                 .Where(a => a.Username == request.Username)
@@ -43,5 +54,6 @@ namespace PetAdminApi.Controllers
 
             return Ok("Администратор успешно зарегистрирован.");
         }
+
     }
 }

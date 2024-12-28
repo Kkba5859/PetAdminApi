@@ -10,7 +10,7 @@ using PetAdminApi.Data;
 namespace PetAdminApi.Migrations
 {
     [DbContext(typeof(AdminDbContext))]
-    [Migration("20241227095940_InitialCreateForAdmins")]
+    [Migration("20241227125311_InitialCreateForAdmins")]
     partial class InitialCreateForAdmins
     {
         /// <inheritdoc />

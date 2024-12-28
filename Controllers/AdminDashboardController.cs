@@ -1,16 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetAdminApi.Data;
-using PetAdminApi.Models;
-using System.Threading.Tasks;
 
 namespace PetAdminApi.Controllers
 {
-    [Route("api/Admin/dashboard")]
+    [Route("api/AdminDashboard")]
     [ApiController]
     public class AdminDashboardController : ControllerBase
     {
-        private readonly UserDbContext _userContext;  // Используем UserDbContext
+        private readonly UserDbContext _userContext;
 
         public AdminDashboardController(UserDbContext userContext)
         {
@@ -27,21 +25,26 @@ namespace PetAdminApi.Controllers
 
             if (user == null)
             {
-                return NotFound("Пользователь не найден.");
+                return NotFound(new { message = "Пользователь не найден." });
             }
 
             _userContext.Users.Remove(user);
             await _userContext.SaveChangesAsync();
 
-            return Ok("Пользователь удален.");
+            return Ok(new { message = "Пользователь удален." });
         }
 
         // Метод для получения списка всех пользователей
         [HttpGet("getUsers")]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _userContext.Users.ToListAsync();
-            return Ok(users);
+            // Получаем список пользователей с только нужными полями
+            var users = await _userContext.Users
+                .Take(100)
+                .Select(u => new { u.Id, u.Username })
+                .ToListAsync();
+
+            return Ok(users); // Этот результат будет сериализован в JSON
         }
     }
 }
